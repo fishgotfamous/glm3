@@ -99,8 +99,8 @@ def main(top_p: float, temperature: float, prompt_text: str, repetition_penalty:
         )
         print("=== Input:")
         print(input_text)
-        print("=== History:")
-        print(history)
+        # print("=== History:")
+        # print(history)
 
         placeholder = st.container()
         message_placeholder = placeholder.chat_message(name="assistant", avatar="assistant")
