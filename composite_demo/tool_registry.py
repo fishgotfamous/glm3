@@ -104,6 +104,34 @@ def get_weather(
 
     return str(ret)
 
+
+@register_tool
+def IM_Handbook(
+        key_word_name: Annotated[str, 'The name of the Knowledge', True],
+) -> str:
+    """
+    Get the explain for `key_word_name`
+    """
+
+    book = {
+        "FIOS": "Factory Intelligent Operation System，工厂智能运营管理：是一种采用人工智能和物联网技术的工厂数字化管理系统。它可以实现生产过程的全面监控、数据分析和预测，实现生产资源的精细化管理和智能化运营监控，帮助企业优化生产流程、提高生产效率和降低成本。包括：生产计划、仓储物流、质量控制、机器维护、供应链管理、和成本分析等管理功能。",
+        "APS": "Advanced Planning System，高级计划排程系统：提供爬坡、试产和量产等不同阶段的物料计划与生产计划的排布与调整、以及监控与反馈生产达成情况的功能。",
+        "PMS": "Process management system，工艺管理系统：提供工艺SOP设计与制作、审批与转发、工艺项目管理、工艺差异分析、工艺问题诊断与解决方案推荐的一系列工艺数字化功能",
+        "MES": "Manufacturing execution system，制造执行系统：对产线生产过程进行管理和卡控	包括：过站配置与管理、与自动化对接、产线物流调度、数据采集与分析等",
+        "WMS": "Warehouse management system，仓储物流管理系统：提供物料、半成品和成品的仓储物流全部环节的管理，包括：出库、入库、库内管理、备品备件管理、与AGV或智能货架等智能设备对接、物流调度等",
+        "QMS": "Quality Management System，质量管理系统：依据质量管理体系对工厂从来料到成品出厂进行全流程的质量管理，包括：lQC、IPQC、FQC、0QC、质量分析、质量溯源等",
+        "TPM": "Total Productive Maintenance，设备管理系统：提供工厂内生产设备全生命周期的维保管理和资产管理工具，包括：维保计划、维保实施、备件管理、资产管理等",
+        "MOM": "Manufacturing Operation Management，制造运营管理：制造运营管理系统平台",
+        "于成铭": "软件工程部下属工业智能组的一名成员，负责数字员工项目"
+    }
+    if not isinstance(key_word_name, str):
+        raise TypeError("Key word name must be a string")
+    if key_word_name not in book.keys():
+        raise TypeError("Key word name is not contained")
+    else:
+        result = book[key_word_name]
+    return result
+
 if __name__ == "__main__":
     print(dispatch_tool("get_weather", {"city_name": "beijing"}))
     print(get_tools())
